@@ -1,7 +1,7 @@
 
-resource "aws_security_group" "outline-sg" {
-  name        = "outline-sg"
-  description = "outline-sg"
+resource "aws_security_group" "security_group" {
+  name   = var.security_group
+  vpc_id = module.vpc.vpc_id
 
   ingress {
     description = "outline-sg"
@@ -12,6 +12,6 @@ resource "aws_security_group" "outline-sg" {
   }
 
   tags = {
-    Name = "outline-sg"
+    Name = "${var.security_group}"
   }
 }
