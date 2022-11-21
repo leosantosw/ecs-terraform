@@ -1,7 +1,7 @@
 
 resource "aws_security_group" "security_group" {
   name   = var.security_group
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_ecs
 
   ingress {
     from_port   = 5432

@@ -10,6 +10,10 @@ variable "vpc_ecs" {
   type = string
 }
 
+variable "private_subnets" {
+  type = list(string)
+}
+
 variable "security_group" {
   type = string
 }

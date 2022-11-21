@@ -5,8 +5,10 @@ module "infrastructure" {
   
   aws_profile = "leo-aws"
 
-  vpc_ecs = "vpc-ecs"
-  
+  vpc_ecs = "vpc-088eda898f634f11d"
+
+  private_subnets = ["subnet-0cac05b9279bd484e", "subnet-054846eb1778944e3"]
+
   security_group = "outline-sg"
   
   ecr_postgres_repository = "outline-postgres"

@@ -1,3 +1,7 @@
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
 module "ecs" {
   source = "terraform-aws-modules/ecs/aws"
 
@@ -19,10 +23,6 @@ module "ecs" {
       }
     }
   }
-}
-
-data "aws_iam_role" "ecs_task_execution_role" {
-  name = "ecsTaskExecutionRole"
 }
 
 resource "aws_ecs_task_definition" "task_definition" {
@@ -59,7 +59,7 @@ resource "aws_ecs_service" "ecs_service" {
   desired_count   = 1
 
   network_configuration {
-    subnets = module.vpc.private_subnets
+    subnets = var.private_subnets
     security_groups = [aws_security_group.security_group.id]
     assign_public_ip = true
   }
