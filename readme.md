@@ -1,0 +1,1 @@
+# Terraform template for AWS ECS/Fargate setup
