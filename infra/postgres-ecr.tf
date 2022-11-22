@@ -16,7 +16,7 @@ resource "null_resource" "docker_login_aws" {
 
 resource "null_resource" "build_image" {
   provisioner "local-exec" {
-    working_dir = "./../../images"
+    working_dir = "./../../docker-images"
     command = "docker build --file postgres -t ${var.ecr_postgres_repository} --build-arg USER=${local.envs.USER} --build-arg PASSWORD=${local.envs.PASSWORD} --build-arg DATABASE=${local.envs.DATABASE} ."
   }
 
