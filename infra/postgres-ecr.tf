@@ -1,3 +1,7 @@
+data "aws_ssm_parameter" "ami" {
+  name  = "ecs-outline-postgres_database"
+}
+
 resource "aws_ecr_repository" "postgres-ecr" {
   name = var.ecr_postgres_repository
 }
@@ -13,7 +17,7 @@ resource "null_resource" "docker_login_aws" {
 resource "null_resource" "build_image" {
   provisioner "local-exec" {
     working_dir = "./../../images"
-    command = "docker build --file postgres -t ${var.ecr_postgres_repository} ."
+    command = "docker build --file postgres -t ${var.ecr_postgres_repository} --build-arg USER=${local.envs.USER} --build-arg PASSWORD=${local.envs.PASSWORD} --build-arg DATABASE=${local.envs.DATABASE} ."
   }
 
   depends_on = [null_resource.docker_login_aws]

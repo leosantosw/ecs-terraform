@@ -1,3 +1,9 @@
+locals {
+  envs = { 
+    for tuple in regexall("(.*)=(.*)", file("../../.env")) : tuple[0] => replace(tuple[1], "\r", "")
+  }
+}
+
 variable "aws_region" {
   type = string
 }
